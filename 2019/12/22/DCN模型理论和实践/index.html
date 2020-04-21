@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="DNN,推荐系统," />
 
 
 
@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;77719fc252fa https:&#x2F;&#x2F;github.com&#x2F;Nirvanada&#x2F;Deep-and-Cross-Keras https:&#x2F;&#x2F;blog.csdn.net&#x2F;roguesir&#x2F;article&#x2F;details&#x2F;797632 https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1708.05123 1. 原理Deep Cross Network模">
+<meta name="description" content="一个DCN模型从嵌入层和人堆积层开始，接着是一个交叉网络和与之平行的深度网络，之后是最后的组合层，它结合两个网络的输出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DCN模型理论和实践">
-<meta property="og:url" content="http://yoursite.com/2020/04/18/DCN%E6%A8%A1%E5%9E%8B%E7%90%86%E8%AE%BA%E5%92%8C%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/12/22/DCN%E6%A8%A1%E5%9E%8B%E7%90%86%E8%AE%BA%E5%92%8C%E5%AE%9E%E8%B7%B5/index.html">
 <meta property="og:site_name" content="一碗竹叶青">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;77719fc252fa https:&#x2F;&#x2F;github.com&#x2F;Nirvanada&#x2F;Deep-and-Cross-Keras https:&#x2F;&#x2F;blog.csdn.net&#x2F;roguesir&#x2F;article&#x2F;details&#x2F;797632 https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1708.05123 1. 原理Deep Cross Network模">
+<meta property="og:description" content="一个DCN模型从嵌入层和人堆积层开始，接着是一个交叉网络和与之平行的深度网络，之后是最后的组合层，它结合两个网络的输出">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-aa7d9d209c6cf3d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/588/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-0ce1a9e0a5d32ca1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/484/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-dfc32419b13cac1a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/315/format/webp">
@@ -94,9 +94,11 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-aa82753a2af4b2cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/204/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-3b2e83dee702d12d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/532/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-6a3cad235da5dd61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1082/format/webp">
-<meta property="article:published_time" content="2020-04-18T01:12:01.064Z">
-<meta property="article:modified_time" content="2020-01-22T04:17:37.386Z">
+<meta property="article:published_time" content="2019-12-22T04:39:04.000Z">
+<meta property="article:modified_time" content="2020-04-21T01:26:59.083Z">
 <meta property="article:author" content="julianxu">
+<meta property="article:tag" content="DNN">
+<meta property="article:tag" content="推荐系统">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4155986-aa7d9d209c6cf3d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/588/format/webp">
 
@@ -128,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/18/DCN模型理论和实践/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/12/22/DCN模型理论和实践/"/>
 
 
 
@@ -190,7 +192,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -200,7 +202,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="section noopener">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -210,7 +212,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -219,8 +221,18 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -230,7 +242,7 @@
       
         
         <li class="menu-item menu-item-commonweal">
-          <a href="https://www.qq.com/404/" target="_blank" rel="section noopener">
+          <a href="/404/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
@@ -271,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/18/DCN%E6%A8%A1%E5%9E%8B%E7%90%86%E8%AE%BA%E5%92%8C%E5%AE%9E%E8%B7%B5/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/22/DCN%E6%A8%A1%E5%9E%8B%E7%90%86%E8%AE%BA%E5%92%8C%E5%AE%9E%E8%B7%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="julianxu">
@@ -300,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-18T09:12:01+08:00">
-                2020-04-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-22T12:39:04+08:00">
+                2019-12-22
               </time>
             
 
@@ -314,11 +326,26 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/22/DCN%E6%A8%A1%E5%9E%8B%E7%90%86%E8%AE%BA%E5%92%8C%E5%AE%9E%E8%B7%B5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/12/22/DCN%E6%A8%A1%E5%9E%8B%E7%90%86%E8%AE%BA%E5%92%8C%E5%AE%9E%E8%B7%B5/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
           
 
           
@@ -338,7 +365,10 @@
       
 
       
-        <p><a href="https://www.jianshu.com/p/77719fc252fa" target="_blank" rel="noopener">https://www.jianshu.com/p/77719fc252fa</a></p>
+        <p>一个DCN模型从嵌入层和人堆积层开始，接着是一个交叉网络和与之平行的深度网络，之后是最后的组合层，它结合两个网络的输出</p>
+<a id="more"></a>
+
+<p><a href="https://www.jianshu.com/p/77719fc252fa" target="_blank" rel="noopener">https://www.jianshu.com/p/77719fc252fa</a></p>
 <p><a href="https://github.com/Nirvanada/Deep-and-Cross-Keras" target="_blank" rel="noopener">https://github.com/Nirvanada/Deep-and-Cross-Keras</a></p>
 <p><a href="https://blog.csdn.net/roguesir/article/details/797632" target="_blank" rel="noopener">https://blog.csdn.net/roguesir/article/details/797632</a></p>
 <p><a href="https://arxiv.org/abs/1708.05123" target="_blank" rel="noopener">https://arxiv.org/abs/1708.05123</a></p>
@@ -374,6 +404,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/DNN/" rel="tag"># DNN</a>
+          
+            <a href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag"># 推荐系统</a>
+          
+        </div>
+      
 
       
       
@@ -383,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/18/GBDT+LR%E7%AE%97%E6%B3%95%E8%A7%A3%E6%9E%90/" rel="next" title="GBDT+LR算法解析">
-                <i class="fa fa-chevron-left"></i> GBDT+LR算法解析
+              <a href="/2019/12/22/MLR/" rel="next" title="MLR模型理论和实践">
+                <i class="fa fa-chevron-left"></i> MLR模型理论和实践
               </a>
             
           </div>
@@ -392,10 +430,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/18/NFM/" rel="prev" title="NFM">
-                NFM <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -414,6 +448,12 @@
 
     <div class="post-spread">
       
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
     </div>
   </div>
 
@@ -423,6 +463,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -474,7 +521,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7C%20archive">
               
                   <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
@@ -488,10 +535,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">2</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -499,6 +546,28 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Snail110" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="xuzyhubu@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/baidu_38127162" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-scdn"></i>CSDN</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -566,9 +635,38 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
 
 
 
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=66547258";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -726,6 +824,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'snail110',
+            repo: 'snail110.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'dcdb00026cec17a372afde717c5b943294207dbf',
+            
+                client_id: '5f0d5e0bdf7f8aeaaf56'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
